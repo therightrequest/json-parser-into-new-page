@@ -2,6 +2,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+// Increase the body size limit
+app.use(express.json({ limit: '10mb' })); // Adjust the limit as needed
+app.use(express.urlencoded({ limit: '10mb', extended: true })); // For URL-encoded data
+
 // Route to serve index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'web', 'index.html'));
