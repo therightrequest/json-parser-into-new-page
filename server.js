@@ -1,8 +1,23 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
+// Route to serve index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'web', 'index.html'));
+});
+
+// Route to serve script.js
+app.get('/script.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'web', 'script.js'));
+});
+
+// Route to serve styles.css
+app.get('/styles.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'web', 'styles.css'));
+});
+
 app.use(express.json());
-app.use(express.static('web'));
 
 app.post('/parse-json', (req, res) => {
     const { jsonString } = req.body;
